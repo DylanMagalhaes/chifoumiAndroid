@@ -4,15 +4,17 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
     lateinit var rockButton: Button
     lateinit var paperButton: Button
     lateinit var cutButton: Button
 
-    lateinit var iaHandLabel: TextView
-    lateinit var playerHandLabel: TextView
+    lateinit var iaHandImage: ImageView
+    lateinit var playerHandImage: ImageView
     lateinit var gameResultLabel: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         rockButton = findViewById(R.id.rockButton)
         paperButton = findViewById(R.id.paperButton)
         cutButton = findViewById(R.id.cutButton)
-        iaHandLabel = findViewById(R.id.iaHandLabel)
-        playerHandLabel = findViewById(R.id.playerHandLabel)
+        iaHandImage = findViewById(R.id.iaHandImage)
+        playerHandImage = findViewById(R.id.playerHandImage)
         gameResultLabel = findViewById(R.id.gameResultLabel)
 
 
@@ -50,11 +52,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showIaHand(hand: Hand) {
-        iaHandLabel.text = hand.name
+        val drawableRes = when (hand) {
+            Hand.ROCK -> R.drawable.ic_rock
+            Hand.PAPER -> R.drawable.ic_paper
+            Hand.CUT -> R.drawable.ic_scissors
+        }
+
+        val image = ContextCompat.getDrawable(this, drawableRes)
+
+        iaHandImage.setImageDrawable(image)
     }
 
     private fun showPlayerHand(hand: Hand) {
-        playerHandLabel.text = hand.name
+        val drawableRes = when (hand) {
+            Hand.ROCK -> R.drawable.ic_rock
+            Hand.PAPER -> R.drawable.ic_paper
+            Hand.CUT -> R.drawable.ic_scissors
+        }
+
+        val image = ContextCompat.getDrawable(this, drawableRes)
+
+        playerHandImage.setImageDrawable(image)
     }
 
     fun hasPlayerWon(iaHand: Hand, playerHand: Hand): Boolean? =

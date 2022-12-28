@@ -38,20 +38,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/iaHandLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/iaHandImage"
+        android:layout_width="64dp
+"
+        android:layout_height="64dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="@id/iaLabel"
         app:layout_constraintStart_toStartOf="@id/iaLabel"
         app:layout_constraintTop_toBottomOf="@id/iaLabel"
         tools:text="PAPER" />
 
-    <TextView
-        android:id="@+id/playerHandLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/playerHandImage"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="@id/playerLabel"
         app:layout_constraintStart_toStartOf="@id/playerLabel"
