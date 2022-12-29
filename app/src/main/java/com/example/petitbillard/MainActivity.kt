@@ -9,13 +9,18 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
-    lateinit var rockButton: Button
-    lateinit var paperButton: Button
-    lateinit var cutButton: Button
+    private lateinit var rockButton: Button
+    private lateinit var paperButton: Button
+    private lateinit var cutButton: Button
 
-    lateinit var iaHandImage: ImageView
-    lateinit var playerHandImage: ImageView
-    lateinit var gameResultLabel: TextView
+    private lateinit var iaHandImage: ImageView
+    private lateinit var playerHandImage: ImageView
+    private lateinit var gameResultLabel: TextView
+    private lateinit var iaScoreLabel: TextView
+    private lateinit var playerScoreLabel: TextView
+
+    private var iaScore = 0
+    private var playerScore = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         iaHandImage = findViewById(R.id.iaHandImage)
         playerHandImage = findViewById(R.id.playerHandImage)
         gameResultLabel = findViewById(R.id.gameResultLabel)
+        iaScoreLabel = findViewById(R.id.iaScore)
+        playerScoreLabel = findViewById((R.id.playerScore))
 
 
         rockButton.setOnClickListener {
@@ -49,6 +56,22 @@ class MainActivity : AppCompatActivity() {
         showIaHand(iaHand)
         val hasPlayerWon = hasPlayerWon(iaHand, playerHand)
         showGameResult(hasPlayerWon)
+        updateScoreCount(hasPlayerWon)
+    }
+
+    private fun updateScoreCount(hasPlayerWon: Boolean?) {
+
+        when (hasPlayerWon) {
+            null -> Unit
+            true -> {
+                playerScore++
+                playerScoreLabel.text = "$playerScore"
+            }
+            false -> {
+                iaScore++
+                iaScoreLabel.text = "$iaScore"
+            }
+        }
     }
 
     private fun showIaHand(hand: Hand) {
